@@ -1,15 +1,12 @@
 import "../styles/globals.css";
 import { AppProps } from "next/app";
-import { ThemeProvider } from "@material-ui/styles";
-import { createTheme } from "@material-ui/core";
+import { CustomThemeProvider } from "../ui/CustomThemeProvider";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const theme = createTheme({});
-
   return (
-    <ThemeProvider theme={theme}>
+    <CustomThemeProvider>
       <Component {...pageProps} />
-    </ThemeProvider>
+    </CustomThemeProvider>
   );
 }
 
