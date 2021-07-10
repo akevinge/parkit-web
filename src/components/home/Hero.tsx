@@ -2,7 +2,7 @@ import { FC } from "react";
 import { makeStyles } from "@material-ui/styles";
 import { Theme } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
-import { Button } from "./Button";
+import { Button } from "../../ui/Button";
 
 const useStyles = makeStyles((theme: Theme) => ({
   bgSlant1_1440up: {

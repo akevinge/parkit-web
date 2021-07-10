@@ -1,5 +1,5 @@
 import { Meta } from "@storybook/react";
-import { Navbar } from "../shared-components/Navbar";
+import { Navbar } from "../ui/Navbar";
 
 export default {
   title: "Navbar",

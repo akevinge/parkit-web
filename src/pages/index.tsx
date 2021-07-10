@@ -1,6 +1,6 @@
 import Head from "next/head";
-import { Navbar } from "../shared-components/Navbar";
-import { Hero } from "../ui/Hero";
+import { Navbar } from "../ui/Navbar";
+import { Hero } from "../components/home/Hero";
 
 export default function Home() {
   return (

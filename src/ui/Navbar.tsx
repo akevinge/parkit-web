@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Theme } from "@material-ui/core";
 import { createStyles, makeStyles } from "@material-ui/styles";
-import { Button } from "../ui/Button";
+import { Button } from "./Button";
 import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme: Theme) =>

@@ -1,5 +1,5 @@
 import { Meta } from "@storybook/react";
-import { Hero } from "../ui/Hero";
+import { Hero } from "../components/home/Hero";
 
 export default {
   title: "Hero",
