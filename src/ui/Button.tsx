@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         ? { backgroundColor: theme.palette.primary.dark }
         : {}),
     },
+    whiteSpace: "nowrap",
   }),
   label: {
     fontFamily: "Geometria",

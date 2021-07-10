@@ -1,6 +1,8 @@
 import { FC } from "react";
 import { makeStyles } from "@material-ui/styles";
 import { Theme } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
+import { Button } from "./Button";
 
 const useStyles = makeStyles((theme: Theme) => ({
   bgSlant1_1440up: {
@@ -68,13 +70,63 @@ const useStyles = makeStyles((theme: Theme) => ({
       display: "block",
     },
   },
+  container: {
+    position: "relative",
+  },
+  contentWrap: {
+    maxWidth: "40vw",
+    position: "absolute",
+    top: "24vh",
+    left: "18vw",
+    display: "flex",
+    flexDirection: "column",
+    gap: "25px",
+  },
+  heroText: {
+    color: theme.palette.primary.main,
+    letterSpacing: "0.5px",
+    fontSize: "55px",
+  },
+  btnWrap: {
+    display: "flex",
+    gap: "10px",
+  },
 }));
 
 export const Hero: FC = () => {
   const classes = useStyles();
 
   return (
-    <>
+    <div className={classes.container}>
+      <div className={classes.contentWrap}>
+        <Typography className={classes.heroText} variant="h3" component="h3">
+          Lease your parking spots and get paid
+        </Typography>
+        <div className={classes.btnWrap}>
+          <Button
+            styles={{
+              variant: "text",
+              size: "md",
+              textColor: "secondary",
+              bgColor: "primary",
+              hoverBgColor: "primary",
+            }}
+          >
+            Sign up to lease
+          </Button>
+          <Button
+            styles={{
+              variant: "text",
+              size: "md",
+              textColor: "primary",
+              bgColor: "transparent",
+              hoverBgColor: "secondary",
+            }}
+          >
+            Look for spots
+          </Button>
+        </div>
+      </div>
       <img
         className={classes.bgSlant1_1440up}
         src="/svgs/bg_slant_1_black_1440up.svg"
@@ -97,6 +149,6 @@ export const Hero: FC = () => {
       />
       {/* mobile needs less fluid image */}
       <div className={classes.bgSlant1_test}></div>
-    </>
+    </div>
   );
 };

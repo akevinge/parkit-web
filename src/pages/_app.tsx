@@ -3,7 +3,6 @@ import { AppProps } from "next/app";
 import Head from "next/head";
 import PropTypes from "prop-types";
 import { CustomThemeProvider } from "../ui/CustomThemeProvider";
-// import { CssBaseline } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { useEffect } from "react";
 import { useState } from "react";
