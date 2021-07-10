@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "center",
       gap: "10px",
+      marginRight: "15%",
     },
   })
 );
