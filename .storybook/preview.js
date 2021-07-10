@@ -1,5 +1,5 @@
 import { muiTheme } from "storybook-addon-material-ui";
-import { theme } from "../src/ui/CustomThemeProvider";
+import { theme } from "../src/styles/theme";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

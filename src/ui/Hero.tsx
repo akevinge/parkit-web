@@ -76,16 +76,29 @@ const useStyles = makeStyles((theme: Theme) => ({
   contentWrap: {
     maxWidth: "40vw",
     position: "absolute",
-    top: "24vh",
-    left: "18vw",
     display: "flex",
     flexDirection: "column",
     gap: "25px",
+    [theme.breakpoints.up("1000")]: {
+      top: "24vh !important",
+      left: "18vw !important",
+    },
+    [theme.breakpoints.up("800")]: {
+      top: "15vh",
+      left: "18vw",
+    },
+    [theme.breakpoints.down("800")]: {
+      top: "10vh",
+      left: "50%",
+      transform: "translateX(-50%)",
+      maxWidth: "100vw",
+    },
   },
   heroText: {
     color: theme.palette.primary.main,
     letterSpacing: "0.5px",
     fontSize: "55px",
+    [theme.breakpoints.down("800")]: { fontSize: "45px" },
   },
   btnWrap: {
     display: "flex",
@@ -121,6 +134,7 @@ export const Hero: FC = () => {
               textColor: "primary",
               bgColor: "transparent",
               hoverBgColor: "secondary",
+              borderRadius: "5px",
             }}
           >
             Look for spots
