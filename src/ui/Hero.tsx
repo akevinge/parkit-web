@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   bgSlant1_1440up: {
     width: "100vw",
     [theme.breakpoints.up("1440")]: {
-      display: "initial",
+      display: "block",
     },
     [theme.breakpoints.down("1440")]: {
       display: "none",
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       display: "none !important",
     },
     [theme.breakpoints.up("1200")]: {
-      display: "initial",
+      display: "block",
     },
     [theme.breakpoints.down("1200")]: {
       display: "none",
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       display: "none !important",
     },
     [theme.breakpoints.up("1000")]: {
-      display: "initial",
+      display: "block",
     },
     [theme.breakpoints.down("1000")]: {
       display: "none",
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       display: "none !important",
     },
     [theme.breakpoints.up("800")]: {
-      display: "initial",
+      display: "block",
     },
     [theme.breakpoints.down("800")]: {
       display: "none",
@@ -52,12 +52,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: "100vw",
     marginTop: "-1px",
     minWidth: "800px",
-    [theme.breakpoints.up("800")]: {
-      display: "none",
-    },
-    [theme.breakpoints.down("800")]: {
-      display: "initial",
-    },
+    display: "",
   },
   bgSlant1_test: {
     width: "100vw",
@@ -66,6 +61,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundImage: "url('/svgs/bg_slant_1_black_0up.svg')",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
+    [theme.breakpoints.up("800")]: {
+      display: "none",
+    },
+    [theme.breakpoints.down("800")]: {
+      display: "block",
+    },
   },
 }));
 
