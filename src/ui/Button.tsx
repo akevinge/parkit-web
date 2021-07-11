@@ -46,6 +46,7 @@ interface IButtonStyles {
 }
 
 interface IButtonProps {
+  props?: any;
   styles: IButtonStyles;
   onClick?: () => void;
 }
@@ -55,10 +56,16 @@ export const Button: FC<IButtonProps> = ({
   styles: { variant },
   onClick,
   children,
+  props,
 }) => {
   const classes = useStyles(styles);
   return (
-    <MaterialBtn className={classes.root} variant={variant} onClick={onClick}>
+    <MaterialBtn
+      className={classes.root}
+      variant={variant}
+      onClick={onClick}
+      {...props}
+    >
       {children}
     </MaterialBtn>
   );

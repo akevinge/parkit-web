@@ -11,9 +11,12 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@date-io/date-fns": "1.x",
     "@material-ui/core": "^4.12.0",
     "@material-ui/icons": "^4.11.2",
+    "@material-ui/pickers": "^3.3.10",
     "@material-ui/styles": "^4.11.4",
+    "date-fns": "^2.22.1",
     "firebase": "^8.7.0",
     "next": "11.0.1",
     "react": "17.0.2",
