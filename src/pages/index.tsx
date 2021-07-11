@@ -2,6 +2,7 @@ import Head from "next/head";
 import { Navbar } from "../ui/Navbar";
 import { Hero } from "../components/home/Hero";
 import { SpotSearch } from "../components/home/SpotSearch";
+import { MobileAd } from "../components/home/MobileAd";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <SpotSearch />
+      <MobileAd />
     </div>
   );
 }

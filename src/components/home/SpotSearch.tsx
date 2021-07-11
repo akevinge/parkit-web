@@ -1,11 +1,5 @@
 import { makeStyles } from "@material-ui/styles";
-import {
-  TextField,
-  Theme,
-  Typography,
-  InputLabel,
-  Grid,
-} from "@material-ui/core";
+import { TextField, Theme, Typography, InputLabel } from "@material-ui/core";
 import { Button } from "../../ui/Button";
 import { FC } from "react";
 import { DatePicker } from "../../ui/DatePicker";
@@ -13,19 +7,29 @@ import { DatePicker } from "../../ui/DatePicker";
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
     width: "100vw",
-    height: "60vw",
     display: "flex",
     justifyContent: "flex-end",
-    position: "absolute",
-    top: "102vh",
-    left: 0,
+    marginTop: "-40vh",
+    marginBottom: "33vh",
+    [theme.breakpoints.down("800")]: {
+      margin: "5vh",
+      justifyContent: "center",
+      marginLeft: 0,
+      marginTop: "1vh",
+      marginBottom: "10vh",
+    },
   },
   inner: {
+    width: "45vw",
     height: "auto",
-    paddingRight: "12vw",
     display: "flex",
     flexDirection: "column",
     gap: "25px",
+    [theme.breakpoints.down("800")]: {
+      width: "60vw",
+      alignItems: "center",
+      textAlign: "center",
+    },
   },
   title: {
     fontWeight: 500,
