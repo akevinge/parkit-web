@@ -24,4 +24,4 @@ if (!firebase.apps.length) {
   }
 }
 
-export { firebase };
+export const firebaseInstance = firebase;
