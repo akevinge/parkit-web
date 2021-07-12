@@ -4,6 +4,7 @@ import { Hero } from "../components/home/Hero";
 import { SpotSearch } from "../components/home/SpotSearch";
 import { MobileAd } from "../components/home/MobileAd";
 import { CallToAction } from "../components/home/CallToAction";
+import { Footer } from "../ui/Footer";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <SpotSearch />
       <MobileAd />
       <CallToAction />
+      <Footer />
     </div>
   );
 }
