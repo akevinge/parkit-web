@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       marginLeft: 0,
       textAlign: "center",
       alignItems: "center",
+      position: "relative",
     },
   },
   mobileImg: {
@@ -54,7 +55,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   bgSlant2: {
     width: "100vw",
     [theme.breakpoints.down("800")]: {
-      visibility: "hidden",
+      display: "none",
     },
   },
 }));
