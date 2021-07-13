@@ -1,45 +1,39 @@
 import { FC } from "react";
 import { Theme } from "@material-ui/core";
-import { createStyles, makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/styles";
 import { Button } from "./Button";
 import SearchIcon from "@material-ui/icons/Search";
+import { Logo } from "./Logo";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    container: {
-      backgroundColor: theme.palette.secondary.main,
-      width: "100vw",
-      height: "60px",
-      display: "grid",
-      gridTemplateColumns: "2fr 5fr 2fr",
-      alignItems: "center",
-    },
-    logo: {
-      fontFamily: "Geometria",
-      color: theme.palette.primary.main,
-      fontSize: "18px",
-      fontWeight: 500,
-      marginLeft: "15%",
-    },
-    centerContainer: {
-      display: "flex",
-      justifyContent: "center",
-    },
-    rightContainer: {
-      display: "flex",
-      justifyContent: "center",
-      gap: "10px",
-      marginRight: "15%",
-    },
-  })
-);
+const useStyles = makeStyles((theme: Theme) => ({
+  container: {
+    backgroundColor: theme.palette.secondary.main,
+    width: "100vw",
+    height: "60px",
+    display: "grid",
+    gridTemplateColumns: "2fr 5fr 2fr",
+    alignItems: "center",
+  },
+  centerContainer: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  rightContainer: {
+    display: "flex",
+    justifyContent: "center",
+    gap: "10px",
+    marginRight: "15%",
+  },
+}));
 
 export const Navbar: FC = () => {
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
-      <h2 className={classes.logo}>ParKit</h2>
+      <div style={{ marginLeft: "15%" }}>
+        <Logo />
+      </div>
       <div className={classes.centerContainer}>
         <Button
           styles={{
