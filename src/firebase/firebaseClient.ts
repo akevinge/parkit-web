@@ -1,4 +1,4 @@
-import firebase from "firebase/app";
+import firebaseApp from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/analytics";
@@ -15,13 +15,14 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
+if (!firebaseApp.apps.length) {
+  firebaseApp.initializeApp(firebaseConfig);
 
   if (!isServer && "measurementId" in firebaseConfig) {
-    firebase.analytics();
-    firebase.performance();
+    firebaseApp.analytics();
+    firebaseApp.performance();
   }
 }
 
-export const firebaseInstance = firebase;
+export const firebase = firebaseApp;
+export const fireStore = firebase.firestore();

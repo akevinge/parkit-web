@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Button } from "../../ui/Button";
 import { makeStyles } from "@material-ui/styles";
+import { login } from "./login";
 
 const useStyles = makeStyles({
   btnContentWrap: {
@@ -34,6 +35,7 @@ export const AppleLoginBtn: FC = () => {
           fontSize: "18px",
         },
       }}
+      onClick={() => login("apple")}
     >
       <div className={classes.btnContentWrap}>
         <img

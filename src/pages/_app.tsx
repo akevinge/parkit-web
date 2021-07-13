@@ -6,6 +6,7 @@ import { CustomThemeProvider } from "../ui/CustomThemeProvider";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useAuthListeners } from "../modules/auth/useAuthListeners";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   // components need to wait for server jssStyles removal - not sure if there's a better way to do this
@@ -18,6 +19,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       setLoading(false);
     }
   }, []);
+
+  useAuthListeners();
 
   return (
     <>
