@@ -5,8 +5,9 @@ import { SpotSearch } from "./SpotSearch";
 import { MobileAd } from "./MobileAd";
 import { CallToAction } from "./CallToAction";
 import { Footer } from "../../ui/Footer";
+import { NextPage } from "next";
 
-export const HomePage = () => {
+export const HomePage: NextPage = () => {
   return (
     <div className="page-container">
       <Head>

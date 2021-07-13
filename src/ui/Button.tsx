@@ -17,7 +17,14 @@ const useStyles = makeStyles((theme: Theme) => ({
         ? theme.palette.primary.main
         : theme.palette.secondary.main,
     color: theme.palette[textColor].main,
-    width: size === "sm" ? "90px" : size === "md" ? "170px" : "200px",
+    width:
+      size === "sm"
+        ? "90px"
+        : size === "md"
+        ? "170px"
+        : size === "lg"
+        ? "200px"
+        : "300px",
     ...(size === "sm" ? { paddingTop: "2px", paddingBottom: "2px" } : {}),
     borderColor: theme.palette.secondary.light,
     textTransform: "none",
@@ -40,7 +47,7 @@ interface IButtonStyles {
   bgColor?: "primary" | "secondary" | "transparent";
   variant: "outlined" | "text";
   textColor: "primary" | "secondary";
-  size: "sm" | "md" | "lg";
+  size: "sm" | "md" | "lg" | "xl";
   hoverBgColor?: "primary" | "secondary" | "default";
   borderRadius?: string;
 }
@@ -49,10 +56,12 @@ interface IButtonProps {
   props?: any;
   styles: IButtonStyles;
   onClick?: () => void;
+  link?: string;
 }
 
 export const Button: FC<IButtonProps> = ({
   styles,
+  link = "",
   styles: { variant },
   onClick,
   children,
@@ -61,6 +70,7 @@ export const Button: FC<IButtonProps> = ({
   const classes = useStyles(styles);
   return (
     <MaterialBtn
+      href={link}
       className={classes.root}
       variant={variant}
       onClick={onClick}

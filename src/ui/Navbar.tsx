@@ -69,6 +69,7 @@ export const Navbar: FC = () => {
       </div>
       <div className={classes.rightContainer}>
         <Button
+          link="/login"
           styles={{
             variant: "text",
             textColor: "primary",
@@ -81,6 +82,7 @@ export const Navbar: FC = () => {
           Log in
         </Button>
         <Button
+          link="/login"
           styles={{
             variant: "text",
             textColor: "secondary",
