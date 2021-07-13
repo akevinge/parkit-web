@@ -68,7 +68,7 @@ export const LoginPage: NextPage = () => {
           >
             <img
               className={classes.mobileBgSlantImg}
-              src="/svgs/slant_3/bg_slant_3_test.svg"
+              src="/svgs/login_slant_3/bg_slant_3_test.svg"
               alt=""
             />
           </div>
@@ -78,7 +78,7 @@ export const LoginPage: NextPage = () => {
           >
             <img
               className={classes.mobileBgSlantImg}
-              src="/svgs/slant_3/bg_slant_3_test_1.svg"
+              src="/svgs/login_slant_3/bg_slant_3_test_1.svg"
               alt=""
             />
           </div>
@@ -92,7 +92,7 @@ export const LoginPage: NextPage = () => {
             </Typography>
             <img
               className={classes.bgSlant}
-              src="/svgs/slant_3/bg_slant_3_black.svg"
+              src="/svgs/login_slant_3/bg_slant_3_black.svg"
               alt=""
             />
           </div>

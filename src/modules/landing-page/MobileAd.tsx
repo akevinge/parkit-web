@@ -103,7 +103,7 @@ export const MobileAd: FC = () => {
 
       <img
         className={classes.bgSlant2}
-        src="/svgs/slant_2/bg_slant_block_2_black_800up.svg"
+        src="/svgs/home_slant_2/bg_slant_block_2_black_800up.svg"
         alt=""
       />
     </div>

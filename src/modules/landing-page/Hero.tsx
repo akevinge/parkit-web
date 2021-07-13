@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: "100vw",
     height: "70vh",
     marginTop: "-1px",
-    backgroundImage: "url('/svgs/slant_1/bg_slant_1_black_0up.svg')",
+    backgroundImage: "url('/svgs/home_slant_1/bg_slant_1_black_0up.svg')",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     [theme.breakpoints.up("800")]: {
@@ -137,22 +137,22 @@ export const Hero: FC = () => {
       </div>
       <img
         className={classes.bgSlant1_1440up}
-        src="/svgs/slant_1/bg_slant_1_black_1440up.svg"
+        src="/svgs/home_slant_1/bg_slant_1_black_1440up.svg"
         alt=""
       />
       <img
         className={classes.bgSlant1_1200up}
-        src="/svgs/slant_1/bg_slant_1_black_1200up.svg"
+        src="/svgs/home_slant_1/bg_slant_1_black_1200up.svg"
         alt=""
       />
       <img
         className={classes.bgSlant1_1000up}
-        src="/svgs/slant_1/bg_slant_1_black_1000up.svg"
+        src="/svgs/home_slant_1/bg_slant_1_black_1000up.svg"
         alt=""
       />
       <img
         className={classes.bgSlant1_800up}
-        src="/svgs/slant_1/bg_slant_1_black_800up.svg"
+        src="/svgs/home_slant_1/bg_slant_1_black_800up.svg"
         alt=""
       />
       {/* mobile needs less fluid image */}
