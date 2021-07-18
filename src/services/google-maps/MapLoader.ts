@@ -29,22 +29,6 @@ export class MapLoader {
                 zoom: 10,
               }
             );
-            // const roadmapOverlay = new google.maps.ImageMapType({
-            //   getTileUrl: function (coord, zoom) {
-            //     // Using WMS tile numbering.
-            //     return [
-            //       "https://grid.plus.codes/grid/wms/",
-            //       zoom,
-            //       "/",
-            //       coord.x,
-            //       "/",
-            //       coord.y,
-            //       ".png",
-            //     ].join("");
-            //   },
-            //   tileSize: new google.maps.Size(256, 256),
-            // });
-            // this.map.overlayMapTypes.push(roadmapOverlay);
             this.initListeners();
           })
           .then(cb);
@@ -60,6 +44,7 @@ export class MapLoader {
                 zoom: 8,
               }
             );
+            this.initListeners();
           })
           .then(cb);
       }
@@ -67,18 +52,39 @@ export class MapLoader {
     return this;
   }
 
+  private deleteMarkers() {
+    for (const marker of this.markers) {
+      marker.hideMarker();
+    }
+    this.markers = [];
+  }
+
+  private unloadMarkers() {
+    const bounds = this.map?.getBounds()?.toJSON();
+    if (bounds) {
+      this.markers = this.markers.filter((marker) => {
+        const isVisible = marker.isVisible(bounds);
+        if (!isVisible) {
+          marker.hideMarker();
+        }
+        return isVisible;
+      });
+    }
+  }
+
   private initListeners() {
     this.map?.addListener("bounds_changed", () => {
+      this.unloadMarkers();
       if (this.previousTimeoutId) {
         clearTimeout(this.previousTimeoutId);
       }
       this.previousTimeoutId = setTimeout(async () => {
         const zoom = this.map?.getZoom();
-        if (zoom && zoom > 9) {
+        if (zoom && zoom >= 10) {
           const center = this.map?.getCenter()?.toJSON();
           const bounds = this.map?.getBounds()?.toJSON();
           if (center && bounds) {
-            const x = ((await Promise.all(
+            ((await Promise.all(
               getMapPlusCodes({ center, bounds }).map(async (code) =>
                 getSpots(code)
               )
@@ -101,13 +107,13 @@ export class MapLoader {
               });
           }
         }
-      }, 1000);
+      }, 500);
     });
 
     this.map?.addListener("zoom_changed", () => {
       const zoom = this.map?.getZoom();
-      if (zoom && zoom <= 9) {
-        this.markers.map((marker) => marker.marker.setMap(null));
+      if (zoom && zoom < 10) {
+        this.deleteMarkers();
       }
     });
   }
