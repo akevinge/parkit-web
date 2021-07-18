@@ -9,5 +9,5 @@ export const SearchMap: FC = () => {
     const map = new MapLoader(() => setLoading(false));
   }, []);
 
-  return <div id="map" style={{ height: "92%" }}></div>;
+  return <div id="map" style={{ height: "100%" }}></div>;
 };

@@ -61,7 +61,8 @@ export class MapLoader {
 
   private unloadMarkers() {
     const bounds = this.map?.getBounds()?.toJSON();
-    if (bounds) {
+    const zoom = this.map?.getZoom();
+    if (bounds && zoom && zoom < 14) {
       this.markers = this.markers.filter((marker) => {
         const isVisible = marker.isVisible(bounds);
         if (!isVisible) {
@@ -93,16 +94,22 @@ export class MapLoader {
                 return combined.concat(spots);
               }, [] as Spot[])
               .map((spot) => {
-                const { latitudeCenter, longitudeCenter } = decodePlusCode(
-                  spot.id
-                );
-                if (this.map) {
-                  this.markers.push(
-                    new MapMarker(
-                      { lat: latitudeCenter, lng: longitudeCenter },
-                      this.map
-                    )
+                // prevent duplicate markers
+                if (
+                  !this.markers.find((marker) => marker.plusCode === spot.id)
+                ) {
+                  const { latitudeCenter, longitudeCenter } = decodePlusCode(
+                    spot.id
                   );
+                  if (this.map) {
+                    this.markers.push(
+                      new MapMarker({
+                        position: { lat: latitudeCenter, lng: longitudeCenter },
+                        map: this.map,
+                        plusCode: spot.id,
+                      })
+                    );
+                  }
                 }
               });
           }
@@ -112,8 +119,15 @@ export class MapLoader {
 
     this.map?.addListener("zoom_changed", () => {
       const zoom = this.map?.getZoom();
-      if (zoom && zoom < 10) {
-        this.deleteMarkers();
+      if (zoom) {
+        if (zoom < 10) {
+          this.deleteMarkers();
+        }
+        if (zoom > 14) {
+          this.map?.setMapTypeId(google.maps.MapTypeId.HYBRID);
+        } else {
+          this.map?.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+        }
       }
     });
   }
