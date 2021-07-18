@@ -27,6 +27,10 @@ export class MapLoader {
                   lng: longitude,
                 },
                 zoom: 10,
+                fullscreenControl: false,
+                mapTypeControlOptions: {
+                  position: google.maps.ControlPosition.TOP_RIGHT,
+                },
               }
             );
             this.initListeners();
