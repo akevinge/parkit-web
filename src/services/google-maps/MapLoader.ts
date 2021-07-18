@@ -1,6 +1,6 @@
 import { Loader } from "@googlemaps/js-api-loader";
 import { getSpots } from "../firebase/plusCodes";
-import { decodePlusCode, getMapPlusCodes } from "../geocoder/openLocationCode";
+import { decodePlusCode, getMapPlusCodes } from "../open-loc/openLocationCode";
 import { MapMarker } from "./SpotMarker";
 
 export class MapLoader {
