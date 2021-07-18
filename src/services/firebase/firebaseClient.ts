@@ -3,7 +3,7 @@ import "firebase/auth";
 import "firebase/firestore";
 import "firebase/analytics";
 import "firebase/performance";
-import { isServer } from "../lib/isServer";
+import { isServer } from "../../lib/isServer";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,

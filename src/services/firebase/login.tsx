@@ -1,4 +1,4 @@
-import { firebase } from "../../firebase/firebaseClient";
+import { firebase } from "./firebaseClient";
 
 export const login = (provider: "google" | "apple") => {
   switch (provider) {

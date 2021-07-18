@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Button } from "../../ui/Button";
 import { makeStyles } from "@material-ui/styles";
-import { login } from "./login";
+import { login } from "../../services/firebase/login";
 
 const useStyles = makeStyles({
   btnContentWrap: {

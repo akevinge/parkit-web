@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { firebase, fireStore } from "../../firebase/firebaseClient";
-import { useUserStore } from "./useUserStore";
+import { firebase, fireStore } from "./firebaseClient";
+import { useUserStore } from "../../modules/auth/useUserStore";
 
 export const useAuthListeners = () => {
-  const { setUser } = useUserStore();
+  const { setUser } = useUserStore.getState();
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
