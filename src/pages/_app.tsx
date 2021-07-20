@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import "../styles/google.css";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import PropTypes from "prop-types";

@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import { Navbar } from "../../ui/Navbar";
-import { SearchMap } from "./SearchMap";
+import { Map } from "./Map";
 
 export const SearchPage: NextPage = () => {
   return (
@@ -14,7 +14,7 @@ export const SearchPage: NextPage = () => {
       }}
     >
       <Navbar />
-      <SearchMap />
+      <Map />
     </div>
   );
 };

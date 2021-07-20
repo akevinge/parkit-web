@@ -1,17 +1,22 @@
 import { Loader } from "@googlemaps/js-api-loader";
+import { useSpotStore } from "../../modules/search/useSpotStore";
 import { getSpots } from "../firebase/plusCodes";
 import { decodePlusCode, getMapPlusCodes } from "../open-loc/openLocationCode";
 import { MapMarker } from "./SpotMarker";
+
+const { setSpots } = useSpotStore.getState();
 
 export class MapLoader {
   public map: google.maps.Map | undefined;
   private markers: MapMarker[] = [];
   private previousTimeoutId: ReturnType<typeof setTimeout> | undefined;
+  private searchBox: google.maps.places.SearchBox | undefined;
 
   constructor(cb: () => void) {
     const loader = new Loader({
       apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
       version: "weekly",
+      libraries: ["places"],
     });
 
     navigator.geolocation.getCurrentPosition(
@@ -33,7 +38,8 @@ export class MapLoader {
                 },
               }
             );
-            this.initListeners();
+            this.initMapListeners();
+            this.initSearchBox();
           })
           .then(cb);
       },
@@ -48,19 +54,33 @@ export class MapLoader {
                 zoom: 8,
               }
             );
-            this.initListeners();
+            this.initMapListeners();
+            this.initSearchBox();
           })
           .then(cb);
       }
     );
+
     return this;
   }
 
-  private deleteMarkers() {
+  private initSearchBox() {
+    const searchInput = document.getElementById("search-box") as
+      | HTMLInputElement
+      | undefined;
+    if (searchInput) {
+      this.searchBox = new google.maps.places.SearchBox(searchInput);
+    } else {
+      this.initSearchBox();
+    }
+  }
+
+  private deleteAllMarkers() {
     for (const marker of this.markers) {
       marker.hideMarker();
     }
     this.markers = [];
+    setSpots([]);
   }
 
   private unloadMarkers() {
@@ -77,7 +97,7 @@ export class MapLoader {
     }
   }
 
-  private initListeners() {
+  private initMapListeners() {
     this.map?.addListener("bounds_changed", () => {
       this.unloadMarkers();
       if (this.previousTimeoutId) {
@@ -89,33 +109,33 @@ export class MapLoader {
           const center = this.map?.getCenter()?.toJSON();
           const bounds = this.map?.getBounds()?.toJSON();
           if (center && bounds) {
-            ((await Promise.all(
+            const spots = ((await Promise.all(
               getMapPlusCodes({ center, bounds }).map(async (code) =>
                 getSpots(code)
               )
-            ).catch(() => [])) as Spot[])
-              .reduce((combined, spots) => {
-                return combined.concat(spots);
-              }, [] as Spot[])
-              .map((spot) => {
-                // prevent duplicate markers
-                if (
-                  !this.markers.find((marker) => marker.plusCode === spot.id)
-                ) {
-                  const { latitudeCenter, longitudeCenter } = decodePlusCode(
-                    spot.id
+            ).catch(() => [])) as Spot[]).reduce((combined, spots) => {
+              return combined.concat(spots);
+            }, [] as Spot[]);
+
+            spots.map((spot) => {
+              // prevent duplicate markers
+              if (!this.markers.find((marker) => marker.plusCode === spot.id)) {
+                const { latitudeCenter, longitudeCenter } = decodePlusCode(
+                  spot.id
+                );
+                if (this.map) {
+                  this.markers.push(
+                    new MapMarker({
+                      position: { lat: latitudeCenter, lng: longitudeCenter },
+                      map: this.map,
+                      plusCode: spot.id,
+                    })
                   );
-                  if (this.map) {
-                    this.markers.push(
-                      new MapMarker({
-                        position: { lat: latitudeCenter, lng: longitudeCenter },
-                        map: this.map,
-                        plusCode: spot.id,
-                      })
-                    );
-                  }
                 }
-              });
+              }
+            });
+
+            setSpots(spots);
           }
         }
       }, 500);
@@ -125,9 +145,9 @@ export class MapLoader {
       const zoom = this.map?.getZoom();
       if (zoom) {
         if (zoom < 10) {
-          this.deleteMarkers();
+          this.deleteAllMarkers();
         }
-        if (zoom > 14) {
+        if (zoom > 15) {
           this.map?.setMapTypeId(google.maps.MapTypeId.HYBRID);
         } else {
           this.map?.setMapTypeId(google.maps.MapTypeId.ROADMAP);

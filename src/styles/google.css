@@ -1,0 +1,40 @@
+.pac-container {
+  display: "initial" !important;
+  z-index: 99999999 !important;
+  width: 400px !important;
+  top: 130px !important;
+  left: 5px !important;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  box-shadow: 0 1px 3px rgb(0, 0, 0, 0.2);
+}
+
+.pac-item {
+  max-width: 100%;
+  width: 100%;
+  text-overflow: ellipsis;
+  height: 45px !important;
+  border: none;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.pac-item span {
+  font-size: 13px;
+  font-family: "Geometria";
+  white-space: nowrap !important;
+}
+
+.pac-item span:last-child {
+  max-width: 90% !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+}
+
+.pac-icon {
+  display: none !important;
+}
