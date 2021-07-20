@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     cursor: "pointer",
   },
   slideLeft: {
-    left: "-400px",
+    left: "-410px",
   },
 }));
 
