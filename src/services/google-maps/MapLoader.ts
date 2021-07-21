@@ -11,6 +11,7 @@ export class MapLoader {
   private markers: MapMarker[] = [];
   private previousTimeoutId: ReturnType<typeof setTimeout> | undefined;
   private searchBox: google.maps.places.SearchBox | undefined;
+  private readonly zoomThreshold = 10;
 
   constructor(cb: () => void) {
     const loader = new Loader({
@@ -31,7 +32,7 @@ export class MapLoader {
                   lat: latitude,
                   lng: longitude,
                 },
-                zoom: 10,
+                zoom: this.zoomThreshold,
                 fullscreenControl: false,
                 mapTypeControlOptions: {
                   position: google.maps.ControlPosition.TOP_RIGHT,
@@ -40,6 +41,7 @@ export class MapLoader {
             );
             this.initMapListeners();
             this.initSearchBox();
+            this.initSearchBoxListeners();
           })
           .then(cb);
       },
@@ -50,12 +52,13 @@ export class MapLoader {
             this.map = new google.maps.Map(
               document.getElementById("map") as HTMLElement,
               {
-                center: { lat: -34.397, lng: 150.644 },
-                zoom: 8,
+                center: { lat: 40.7128, lng: -74.006 },
+                zoom: this.zoomThreshold,
               }
             );
             this.initMapListeners();
             this.initSearchBox();
+            this.initSearchBoxListeners();
           })
           .then(cb);
       }
@@ -73,6 +76,24 @@ export class MapLoader {
     } else {
       this.initSearchBox();
     }
+  }
+
+  private initSearchBoxListeners() {
+    this.searchBox?.addListener("places_changed", () => {
+      if (this.searchBox && this.map) {
+        const places = this.searchBox.getPlaces();
+
+        if (
+          !places ||
+          !places.length ||
+          !places[0].geometry?.location?.toJSON()
+        )
+          return;
+
+        this.map.panTo(places[0].geometry.location.toJSON());
+        this.map.setZoom(this.zoomThreshold);
+      }
+    });
   }
 
   private deleteAllMarkers() {
@@ -144,7 +165,7 @@ export class MapLoader {
     this.map?.addListener("zoom_changed", () => {
       const zoom = this.map?.getZoom();
       if (zoom) {
-        if (zoom < 10) {
+        if (zoom < this.zoomThreshold) {
           this.deleteAllMarkers();
         }
         if (zoom > 15) {
